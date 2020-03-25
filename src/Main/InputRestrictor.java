@@ -25,10 +25,17 @@ public class InputRestrictor {
 
 		    return result;
 	}
+	public static void CommandCatcher(char command) {
+		if (command == 'e') //referncing back to the method "Command Restrictor" if the command is not F,L,S,B,R every output will turn to e which means its not an aprropraite command
+		{
+			System.out.println("Please enter an appropraite command to the Finch: F(Forward)||L(Left)||R||Right||S(Stop)||B(Backtracking))");
+			System.exit(0);
+		}
+	}
 	public static void DurationRestrictor (int FinchDuration) {
 		if(FinchDuration<1000||FinchDuration>6000) //in this case I took finch duration to compare but the user input is always from 1 to 6
 		{
-			System.out.println("Please Enter The correct amount of duration. The finch can go from 1 to 6 (seconds)");
+			System.out.println("Please Enter The correct amount of duration. The finch can only go from 1 to 6 (seconds)");
 			System.exit(0); //it will close the program when user input wrong input 
 		}
 		
@@ -40,5 +47,32 @@ public class InputRestrictor {
 			System.exit(0); //it will close the program when user input wrong input 
 		}
 	}
+	public static void LeftTurnRestrictor(int LeftSpeed, int RightSpeed) //this method checks that the right/left turn is always orthogonal to the current course
+	{
+		if(RightSpeed>LeftSpeed) {
+			System.out.println("When you turn left your RightSpeed "+RightSpeed+ " Should be less than your left speed "+ LeftSpeed);
+			System.out.println("Please try again!!");
+			System.exit(0);
+		}
+		else if(RightSpeed==LeftSpeed) {
+			System.out.println("This is a forward command because RightSpeed equal Left Speed");
+			System.out.println("Please try again");
+			System.exit(0);
+		}
+	}
+	public static void RightTurnRestrictor(int LeftSpeed, int RightSpeed) //this method checks that the right/left turn is always orthogonal to the current course
+	{
+		if(LeftSpeed>RightSpeed) {
+			System.out.println("When you turn right your RightSpeed "+RightSpeed+ "Should be more than your left speed "+ LeftSpeed);
+			System.out.println("Please try again!!");
+			System.exit(0);
+		}
+		else if(RightSpeed==LeftSpeed) {
+			System.out.println("This is a forward command because RightSpeed equal Left Speed");
+			System.out.println("Please try again");
+			System.exit(0);
+		}
+	}
+	
 	
 }

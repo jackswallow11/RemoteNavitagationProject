@@ -1,9 +1,33 @@
 package Main;
 import com.birdbraintechnologies.Finch;
 public class MovementClass {
-	Finch myfinch = new Finch();
+	static Finch myfinch = new Finch();
 
-       public void ForwardMovement(){
-    	myfinch.setWheelVelocities(255, 255, 1000);   
+       public static void ForwardMovement(int LeftSpeed, int RightSpeed, int Duration) //move forward command
+       {
+    	
+    	   myfinch.setWheelVelocities(LeftSpeed, RightSpeed, Duration);   
+       
        }
+       public static void LeftMovement(int LeftSpeed, int RightSpeed, int Duration) // turn left command
+       {
+       	
+    	   myfinch.setWheelVelocities(LeftSpeed, RightSpeed, Duration);   
+          
+       }
+       public static void RightMovement(int LeftSpeed, int RightSpeed, int Duration) // turn right command
+       {
+          	
+    	   myfinch.setWheelVelocities(LeftSpeed, RightSpeed, Duration);   
+          
+       }
+       public static void StopMovement() // stop the Finch
+       {
+         	
+    	   myfinch.stopWheels();  
+    	   myfinch.quit();
+          
+       }
+       
+       
 }
