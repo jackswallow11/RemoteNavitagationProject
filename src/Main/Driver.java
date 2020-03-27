@@ -8,7 +8,7 @@ public class Driver {
 		
 		
 		InputController start = new InputController();
-		start.InputController();;
+		start.Input_Controller();
 		
 		
 		

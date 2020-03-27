@@ -49,8 +49,8 @@ public class InputRestrictor {
 	}
 	public static void LeftTurnRestrictor(int LeftSpeed, int RightSpeed) //this method checks that the right/left turn is always orthogonal to the current course
 	{
-		if(RightSpeed>LeftSpeed) {
-			System.out.println("When you turn left your RightSpeed "+RightSpeed+ " Should be less than your left speed "+ LeftSpeed);
+		if(RightSpeed<LeftSpeed) {
+			System.out.println("When you turn left your LeftSpeed "+LeftSpeed+ " Should be less than your Right speed "+ RightSpeed);
 			System.out.println("Please try again!!");
 			System.exit(0);
 		}
@@ -62,8 +62,8 @@ public class InputRestrictor {
 	}
 	public static void RightTurnRestrictor(int LeftSpeed, int RightSpeed) //this method checks that the right/left turn is always orthogonal to the current course
 	{
-		if(LeftSpeed>RightSpeed) {
-			System.out.println("When you turn right your RightSpeed "+RightSpeed+ "Should be more than your left speed "+ LeftSpeed);
+		if(LeftSpeed<RightSpeed) {
+			System.out.println("When you turn right your RightSpeed "+RightSpeed+ " Should be less than your left speed "+ LeftSpeed);
 			System.out.println("Please try again!!");
 			System.exit(0);
 		}
