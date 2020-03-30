@@ -33,13 +33,12 @@ public class InputController {
 	
 	//this class is the first stage which collects input from user using scanner object
 	public static void Input_Controller(){
-		
-		userDescription.userManualInstruction();
 		Scanner scan = new Scanner(System.in);
 		String userInput= scan.nextLine();
 		
 		String[] SpaceSpliter = userInput.split(" "); //split by space into a String array
 
+		
 	
 		try {
 
@@ -66,8 +65,6 @@ public class InputController {
 			InputRestrictor.SpeedRestrictor(FinchSpeedRight);
 			
 			
-			System.out.println(CharCommand+" "+FinchDuration+" "+FinchSpeedLeft+" "+" "+FinchSpeedRight);
-			
 			if(CharCommand==left_cap||CharCommand==left_small) {
 				InputRestrictor.LeftTurnRestrictor(FinchSpeedLeft, FinchSpeedRight);
 				MovementClass.LeftMovement(FinchSpeedLeft,FinchSpeedRight,FinchDuration);
@@ -75,6 +72,10 @@ public class InputController {
 			else if(CharCommand==right_cap||CharCommand==right_small) {
 				InputRestrictor.RightTurnRestrictor(FinchSpeedLeft, FinchSpeedRight);
 				MovementClass.RightMovement(FinchSpeedLeft,FinchSpeedRight,FinchDuration);
+			}
+			else {
+				userDescription.commandErrorDescription();
+				System.exit(0);
 			}
 	
 		} 
@@ -85,35 +86,63 @@ public class InputController {
 		
 		 catch (java.lang.ArrayIndexOutOfBoundsException e) //less input than it should be
 		{
-			 
-			 if(S_duration==null&&S_Speed_Left==null&&S_Speed_Left==null&&S_Speed_Right==null) {
-				 if(CharCommand==stop_cap||CharCommand==stop_small) {
-						MovementClass.StopMovement();
-					}
+			
+			 S_Speed_Right=null;
+			 CharCommand = InputRestrictor.CommandRestrictor(command);
+			 InputRestrictor.CommandCatcher(CharCommand);
+			
+			 if((command!=null&&S_duration==null&&S_Speed_Left==null&&S_Speed_Right==null)) {
+				 if(CharCommand==stop_small||CharCommand==stop_cap) {
+					 MovementClass.StopMovement();
+					 System.exit(0);
+					 }
 				 else {
 					 userDescription.commandErrorDescription();
+					 System.exit(0); 
+						 }
+			 } 
+			 else if(command!=null&&S_duration!=null&&S_Speed_Left==null&&S_Speed_Right==null) {
+				 if(CharCommand==backtrack_small||CharCommand==backtrack_cap) {
+					 System.out.println("backtrack");
+					 System.out.println(CharCommand+FinchDuration);
+					 
 				 }
-			 }
-			 else if(S_Speed_Right==null)  {
-				 if(S_Speed_Left==null) {
-					 userDescription.speedErrorDescription();
+				 else if(CharCommand==stop_small||CharCommand==stop_cap) {
+					 MovementClass.StopMovement();
+			
+				 }
+				 else {
+					 userDescription.commandErrorDescription();
 					 System.exit(0);
 				 }
-				 if(CharCommand==forward_cap||CharCommand==forward_small) {
-					 InputRestrictor.DurationRestrictor(FinchDuration);	
-					 MovementClass.ForwardMovement(FinchSpeedLeft,FinchSpeedLeft,FinchDuration);
-					}
 				 
 			 }
-			 else{
-				 userDescription.commandErrorDescription();
-			 }
+			 else if(command!=null&&S_duration!=null&&S_Speed_Left!=null&&S_Speed_Right==null)
+			{
+				 if(CharCommand==forward_small||CharCommand==forward_cap) {
+					System.out.println(command+duration+speedLeft+speedRight);
+					 InputRestrictor.DurationRestrictor(FinchDuration);
+					InputRestrictor.SpeedRestrictor(FinchSpeedLeft);
+					MovementClass.ForwardMovement(FinchSpeedLeft,FinchSpeedLeft,FinchDuration); 
+				 }
+				 	 
+				 else if(CharCommand==backtrack_small||CharCommand==backtrack_cap) {
+					 System.out.println("backtrack");
+					 System.exit(0);
+					 
+				 }
+				 else if(CharCommand==stop_small||CharCommand==stop_cap) {
+					 MovementClass.StopMovement();
+			
+				 }
+				 else {
+					 userDescription.commandErrorDescription();
+					 System.exit(0);
+				 }
+				 
+			}
+			 
 		}
-		
-		
-		
-	
-		
 
 	}
 		

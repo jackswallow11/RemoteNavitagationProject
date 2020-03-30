@@ -1,6 +1,6 @@
 package Main;
 
-public class InputRestrictor {
+public class InputRestrictor extends InputController{
 	/*this method take the first part of array which is string command and just return back one character.
 	(that is only part of the command which is move forward, left, right,stop or backtrack)*/ 
 	//this is part of error handling
@@ -12,11 +12,12 @@ public class InputRestrictor {
 
 		    for(int i = 0; i < command.length(); i++)
 		    {            
-		        if(command.charAt(i)=='F'||command.charAt(i)=='f'||
+		        if(
 		           command.charAt(i)=='L'||command.charAt(i)=='l'||
-		           command.charAt(i)=='S'||command.charAt(i)=='s'||
-		           command.charAt(i)=='B'||command.charAt(i)=='b'||
-		           command.charAt(i)=='r'||command.charAt(i)=='R') 
+		           command.charAt(i)=='r'||command.charAt(i)=='R'||
+		           command.charAt(i)=='f'||command.charAt(i)=='F'||
+		           command.charAt(i)=='s'||command.charAt(i)=='S'||
+		           command.charAt(i)=='b'||command.charAt(i)=='B') 
 		        {
 		            result = command.charAt(i);
 		            break;
@@ -50,7 +51,7 @@ public class InputRestrictor {
 	public static void LeftTurnRestrictor(int LeftSpeed, int RightSpeed) //this method checks that the right/left turn is always orthogonal to the current course
 	{
 		if(RightSpeed<LeftSpeed) {
-			System.out.println("When you turn left your LeftSpeed "+LeftSpeed+ " Should be less than your Right speed "+ RightSpeed);
+			System.out.println("When you turn left your LeftSpeed "+speedLeft+ " Should be less than your Right speed "+ speedRight);
 			System.out.println("Please try again!!");
 			System.exit(0);
 		}
@@ -63,7 +64,7 @@ public class InputRestrictor {
 	public static void RightTurnRestrictor(int LeftSpeed, int RightSpeed) //this method checks that the right/left turn is always orthogonal to the current course
 	{
 		if(LeftSpeed<RightSpeed) {
-			System.out.println("When you turn right your RightSpeed "+RightSpeed+ " Should be less than your left speed "+ LeftSpeed);
+			System.out.println("When you turn right your RightSpeed "+speedRight+ " Should be less than your left speed "+ speedLeft);
 			System.out.println("Please try again!!");
 			System.exit(0);
 		}

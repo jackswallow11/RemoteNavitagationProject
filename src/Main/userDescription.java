@@ -4,7 +4,7 @@ public class userDescription {
 
 	public static void userManualInstruction() {
 		System.out.println("INSTRUCTION OF USING THE REMOTE NAVIGATION FINCH!!! PLEASE READ TO AVOID ERORRS!!!");
-		System.out.println("");
+		
 	}
 	public static void numberOnlyDescription() {
 		System.out.println("You cannot enter a letter, words, or any sign in the finch speed and duration space it should be only a number!!");
