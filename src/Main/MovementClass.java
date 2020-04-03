@@ -28,11 +28,16 @@ public class MovementClass {
        {
          	
     	   System.out.println("Finch Exit! BYE");
-    	   myfinch.stopWheels();  
+    	   myfinch.stopWheels(); 
     	   myfinch.setLED(255,0,0); //red
-    	   myfinch.quit();
-    	   System.exit(0);
+    	   myfinch.quit(); //stop the finch  
+    	   System.exit(0);  //terminate the program when user input stop command
           
+       }
+       public static void BacktrackMovement(int LeftSpeed, int RightSpeed, int Duration) //backtracking
+       {
+    	   myfinch.setWheelVelocities(LeftSpeed, RightSpeed, Duration);   
+    	   myfinch.setLED(0,0,255, Duration); //blue
        }
        
        

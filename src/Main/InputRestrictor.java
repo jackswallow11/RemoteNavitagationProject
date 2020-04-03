@@ -1,6 +1,6 @@
 package Main;
 
-public class InputRestrictor extends InputController{
+public class InputRestrictor extends InputController {
 	/*this method take the first part of array which is string command and just return back one character.
 	(that is only part of the command which is move forward, left, right,stop or backtrack)*/ 
 	//this is part of error handling
@@ -29,14 +29,14 @@ public class InputRestrictor extends InputController{
 	public static void CommandCatcher(char command) {
 		if (command == 'e') //referncing back to the method "Command Restrictor" if the command is not F,L,S,B,R every output will turn to e which means its not an aprropraite command
 		{
-			System.out.println("Please enter an appropraite command to the Finch: F(Forward)||L(Left)||R||Right||S(Stop)||B(Backtracking))");
+			UserDescription.commandErrorDescription();
 			System.exit(0);
 		}
 	}
 	public static void DurationRestrictor (int FinchDuration) {
 		if(FinchDuration<1000||FinchDuration>6000) //in this case I took finch duration to compare but the user input is always from 1 to 6
 		{
-			System.out.println("Please Enter The correct amount of duration. The finch can only go from 1 to 6 (seconds)");
+			UserDescription.DurationErrorDescription();
 			System.exit(0); //it will close the program when user input wrong input 
 		}
 		
@@ -44,7 +44,7 @@ public class InputRestrictor extends InputController{
 	public static void SpeedRestrictor(int FinchSpeed) {
 		if(FinchSpeed<-255||FinchSpeed>255) //in this case I took finch speed to compare but the user input is always from -100 to 100 
 		{
-			System.out.println("Please Enter The correct amount of finch speed. The finch speed can only goes from -100 to 100");
+			UserDescription.speedErrorDescription();
 			System.exit(0); //it will close the program when user input wrong input 
 		}
 	}
@@ -73,6 +73,11 @@ public class InputRestrictor extends InputController{
 			System.out.println("Please try again");
 			System.exit(0);
 		}
+	}
+	public static void BacktrackIntegerRestrictor () {
+		System.out.println("The number of backtrack moves cannot exceed the number of the move commands the finch has completed so far.");
+		System.out.println("Please try again!!");
+		System.exit(0);
 	}
 	
 	

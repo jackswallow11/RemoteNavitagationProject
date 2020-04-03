@@ -68,23 +68,25 @@ public class InputController {
 			if(CharCommand==left_cap||CharCommand==left_small) {
 				InputRestrictor.LeftTurnRestrictor(FinchSpeedLeft, FinchSpeedRight);
 				MovementClass.LeftMovement(FinchSpeedLeft,FinchSpeedRight,FinchDuration);
+				StackMethod.StackAdd(FinchSpeedLeft,FinchSpeedRight,FinchDuration,CharCommand);
 			}
 			else if(CharCommand==right_cap||CharCommand==right_small) {
 				InputRestrictor.RightTurnRestrictor(FinchSpeedLeft, FinchSpeedRight);
 				MovementClass.RightMovement(FinchSpeedLeft,FinchSpeedRight,FinchDuration);
+				StackMethod.StackAdd(FinchSpeedLeft,FinchSpeedRight,FinchDuration,CharCommand);
 			}
 			else {
-				userDescription.commandErrorDescription();
+				UserDescription.commandErrorDescription();
 				System.exit(0);
 			}
 	
 		} 
 		catch (java.lang.NumberFormatException e) { // catch when user type string instead of int in the duration and speed {	
-			userDescription.numberOnlyDescription();
+			UserDescription.numberOnlyDescription();
 			System.exit(0);
 		}
 		
-		 catch (java.lang.ArrayIndexOutOfBoundsException e) //less input than it should be
+		 catch (java.lang.ArrayIndexOutOfBoundsException e) //less input than it should be error handling
 		{
 			
 			 S_Speed_Right=null;
@@ -97,14 +99,17 @@ public class InputController {
 					 System.exit(0);
 					 }
 				 else {
-					 userDescription.commandErrorDescription();
+					 UserDescription.commandErrorDescription();
 					 System.exit(0); 
 						 }
 			 } 
 			 else if(command!=null&&S_duration!=null&&S_Speed_Left==null&&S_Speed_Right==null) {
 				 if(CharCommand==backtrack_small||CharCommand==backtrack_cap) {
-					 System.out.println("backtrack");
-					 System.out.println(CharCommand+FinchDuration);
+					 
+					 StackMethod.StackRetrieve(duration);//value that determines how many commands the finch needs to retrace
+					 //use duration value because we split it is the second element in the array
+					 StackMethod.RemoveAllStack(); //remove all stack one backtrack method is called 
+				
 					 
 				 }
 				 else if(CharCommand==stop_small||CharCommand==stop_cap) {
@@ -112,7 +117,7 @@ public class InputController {
 			
 				 }
 				 else {
-					 userDescription.commandErrorDescription();
+					 UserDescription.commandErrorDescription();
 					 System.exit(0);
 				 }
 				 
@@ -120,23 +125,25 @@ public class InputController {
 			 else if(command!=null&&S_duration!=null&&S_Speed_Left!=null&&S_Speed_Right==null)
 			{
 				 if(CharCommand==forward_small||CharCommand==forward_cap) {
-					System.out.println(command+duration+speedLeft+speedRight);
+					 
 					 InputRestrictor.DurationRestrictor(FinchDuration);
 					InputRestrictor.SpeedRestrictor(FinchSpeedLeft);
 					MovementClass.ForwardMovement(FinchSpeedLeft,FinchSpeedLeft,FinchDuration); 
+					StackMethod.StackAdd(FinchSpeedLeft,FinchSpeedLeft,FinchDuration,CharCommand);
 				 }
 				 	 
 				 else if(CharCommand==backtrack_small||CharCommand==backtrack_cap) {
-					 System.out.println("backtrack");
-					 System.exit(0);
-					 
+					 StackMethod.StackRetrieve(duration); //value that determines how many commands the finch needs to retrace
+					 //use duration value because we split it is the second element in the array
+					 //keep in mind that if b command is left out the backtrack number or known as duration it will take the previous duration value input as the b durtation input 
+					 StackMethod.RemoveAllStack(); //remove all stack one backtrack method is called 
 				 }
 				 else if(CharCommand==stop_small||CharCommand==stop_cap) {
 					 MovementClass.StopMovement();
 			
 				 }
 				 else {
-					 userDescription.commandErrorDescription();
+					 UserDescription.commandErrorDescription();
 					 System.exit(0);
 				 }
 				 

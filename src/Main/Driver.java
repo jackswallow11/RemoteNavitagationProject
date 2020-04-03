@@ -6,10 +6,9 @@ public class Driver {
 
 	public static void main(String[] args) {
 		
-		userDescription.userManualInstruction();
-		InputIterator test = new InputIterator();
-		test.InputLooping();
-		
+		UserDescription.userManualInstruction();
+		InputIterator FinchCommand = new InputIterator(); //constructing the object from looping class
+		FinchCommand.InputLooping(); //calling the iterator method
 		
 		
 	}
